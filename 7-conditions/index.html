@@ -10,13 +10,37 @@
 </head>
 <body>
     <div id="app">
-        <button 
-            class="btn btn-sm btn-primary" 
-            @click="showContainer = !showContainer"
-        >Aç Kapat</button>
-        {{ showContainer }}
-        <h1 class="text-danger">Başlangıçta Gözükecek</h1>
-        <h1 class="text-primary">Sonra Gözükecek</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2 p-2">
+                    <button 
+                        class="btn btn-sm btn-primary" 
+                        @click="showContainer = !showContainer"
+                    >Aç Kapat</button>
+                    
+                    <h1 v-if="!showContainer" class="text-danger">Başlangıçta Gözükecek</h1>
+                    <h1 v-else="showContainer" class="text-primary">Sonra Gözükecek</h1>
+
+                    <hr />
+
+                    <h3 :class="counterBoxClass"> {{ counter }} </h3>
+                    <button class="btn btn-sm btn-success me-2" @click="counter++">Arttır</button>
+                    <button class="btn btn-sm btn-danger" @click="counter--">Azalt</button>
+
+                    <p v-if="counter < 0"> Counter Negatif</p>
+                    <p v-else-if="counter > 0">Counter Pozitif</p>
+                    <p v-else>Counter 0</p>
+
+                    <hr>
+
+                    <p v-show="counter < 0"> Counter Negatif</p>
+                    <p v-show="counter > 0"> Counter Pozitif</p>
+                    <p v-show="counter == 0"> Counter 0</p>
+
+                </div>
+            </div>
+        </div>
+
     </div>
     <script src="app.js"></script>
 </body>
